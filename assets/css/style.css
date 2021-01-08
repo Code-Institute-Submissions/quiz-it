@@ -14,7 +14,9 @@
   overflow: hidden;
 }
 
-.form-container { 
+/* ------------- Form Styling ------------- */
+
+.form-container {
   margin: auto;
   width: 650px;
   padding: 50px;
@@ -39,23 +41,33 @@
   color: #5681c2;
 }
 
+/* Some styling for icon style/positioning was borrowed from this flexbox code - https://codepen.io/imohkay/pen/QwjwwY/ */
+/* From https://codepen.io/imohkay/pen/QwjwwY/ */
 .icon-wrap {
-  border: 1px solid #ddd;   
+  border: 1px solid #eef2f9;
   display: flex;
   flex-direction: row;
 }
 
+.iconWrapBorderColor {
+  border: 1px solid #8fabd6;
+}
+
+/* From https://codepen.io/imohkay/pen/QwjwwY/ */
 .input-icon {
   background-color: #8fabd6;
   color: #fff;
 }
 
+/* From https://codepen.io/imohkay/pen/QwjwwY/ */
 .input-with-icon {
   border: none;
   flex: 1;
 }
 
-.input-icon, .input-with-icon {
+/* From https://codepen.io/imohkay/pen/QwjwwY/ */
+.input-icon,
+.input-with-icon {
   padding: 10px;
 }
 
@@ -67,9 +79,3 @@ input:focus {
   outline: none !important;
   box-shadow: none !important;
 }
-
-
-
-
-
-
