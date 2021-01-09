@@ -8,13 +8,17 @@
 
 /* ------------- Main Container ------------- */
 .main-container {
-  background-color: #c7d5eb;
+  background-color: #8fabd6;
   height: 100vh;
   display: auto;
   overflow: hidden;
 }
 
 /* ------------- Form Styling ------------- */
+
+#login-form {
+  display: block;
+}
 
 .form-container {
   margin: auto;
@@ -27,6 +31,8 @@
   padding: 20px 30px;
   color: #365c96;
   text-align: center;
+  border-radius: 25px;
+  box-shadow: 1px 2px 2px 1px #5681c2;
 }
 
 .form-features p {
@@ -38,36 +44,62 @@
   font-size: 50px;
   padding: 15px;
   background-color: #fff;
-  color: #5681c2;
+  color: #223a5e;
 }
 
-/* Some styling for icon style/positioning was borrowed from this flexbox code - https://codepen.io/imohkay/pen/QwjwwY/ */
-/* From https://codepen.io/imohkay/pen/QwjwwY/ */
-.icon-wrap {
-  border: 1px solid #eef2f9;
+.form-features button {
+  background-color: #365c96;
+  border: 0;
+} 
+
+.form-features button:hover {
+  background-color: #5681c2;
+}
+
+/* Some styling & positioning for below classes (e.g. icon-*)) was borrowed from this flexbox code - https://codepen.io/imohkay/pen/QwjwwY/ */
+.icon-wrap-name {
+  border: 1px solid #365c96;
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-wrap-pass {
+  border: 1px solid #365c96;
   display: flex;
   flex-direction: row;
 }
 
 .iconWrapBorderColor {
-  border: 1px solid #8fabd6;
+  border: 2px solid #365c96;
 }
 
-/* From https://codepen.io/imohkay/pen/QwjwwY/ */
-.input-icon {
-  background-color: #8fabd6;
+.input-icon-name {
+  background-color: #365c96;
   color: #fff;
 }
 
-/* From https://codepen.io/imohkay/pen/QwjwwY/ */
-.input-with-icon {
+.input-icon-pass {
+  background-color: #365c96;
+  color: #fff;
+}
+
+.input-with-icon-name {
   border: none;
   flex: 1;
 }
 
-/* From https://codepen.io/imohkay/pen/QwjwwY/ */
-.input-icon,
-.input-with-icon {
+.input-with-icon-pass {
+  border: none;
+  flex: 1;
+}
+
+.input-icon-name,
+.input-with-icon-name {
+  padding: 10px;
+}
+
+.input-icon-pass,
+.input-with-icon-pass {
   padding: 10px;
 }
 
@@ -78,4 +110,24 @@
 input:focus {
   outline: none !important;
   box-shadow: none !important;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #5681c2;
+  font-style: italic;
+  opacity: 0.5;
+}
+
+/* Responive Queries */
+
+@media only screen and (max-width: 600px) {
+  .form-container {
+    margin: auto;
+    width: 325px;
+    padding: 25px;
+  }
+  .form-features p {
+    font-size: 10px;
+    font-style: italic;
+  }
 }
