@@ -23,20 +23,27 @@
     <section>
       <div class="form-container">
         <div class="form-features">
-          <form>
+          <form id="login-form">
             <div class="form-group">
               <i class="fas fa-question-circle"></i>
               <h1>Quiz It</h1>
-              <p>A simple trivia quiz game that tests your knowledge.</p>
+              <p>A trivia game that tests your knowledge.</p>
               <p>Please login below to play.</p>
               <hr>
             </div>
-            <div class="form-group icon-wrap">
+            <div class="form-group icon-wrap-name">
               <!-- Span element on line 36 borrowed from https://codepen.io/imohkay/pen/QwjwwY/ -->
-              <span class="input-icon"><span class="fa fa-user"></span></span>
-              <input type="text" class="form-control input-with-icon" id="username" name="username"
+              <span class="input-icon-name"><span class="fa fa-user"></span></span>
+              <input type="text" class="form-control input-with-icon-name" id="username" name="username"
                 placeholder="Enter username">
             </div>
+            <div class="form-group icon-wrap-pass">
+              <!-- Span element on line 42 borrowed from https://codepen.io/imohkay/pen/QwjwwY/ -->
+              <span class="input-icon-pass"><span class="fas fa-unlock-alt"></span></span>
+              <input type="text" class="form-control input-with-icon-pass" id="password" name="password"
+                placeholder="Enter password">
+            </div>
+            <button type="button" class="btn btn-primary btn-block btn-lg" id="login" onsubmit="login()">Login</button>
           </form>
 
         </div>
@@ -52,7 +59,8 @@
   <!-- JavaScript -->
   <!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="assets/js/jquery.js"></script>
+  <!-- Custom Javscript -->
+  <script src="assets/js/javascript.js"></script>
 </body>
 
 </html>
