@@ -40,11 +40,25 @@
   font-style: italic;
 }
 
-.form-features i {
+.form-features .fa-question-circle {
   font-size: 50px;
   padding: 15px;
   background-color: #fff;
   color: #223a5e;
+}
+
+.form-features .fa-check-circle {
+  font-size: 50px;
+  padding: 15px;
+  background-color: #fff;
+  color: green;
+}
+
+.form-features .fa-exclamation-circle {
+  font-size: 50px;
+  padding: 15px;
+  background-color: #fff;
+  color: red;
 }
 
 .form-features button {
