@@ -37,18 +37,41 @@ function checkPass() {
 // Validate inputs, add loader and hide login form elements 
 $(document).ready(function () {
   $('#login').click(function () {
-    if(checkName() && checkPass()){
+    if (checkName() && checkPass()) {
       $(this).prop("disabled", true);
       $(this).html(`<span class="spinner-border spinner-border-lg" role="status" aria-hidden="true"></span>`);
 
-      loggedIn = true;
-  
+
       setTimeout(function () {
         if (localName.length > 0 && localPassword == 'password') {
-          $(loginForm).hide();
-        }
-      },2000);
+          loggedIn = true;
+          $(loginForm).children().hide();
+          $(loginForm).html("" +
+            `<i class="fas fa-check-circle"></i>` +
+            `<h1>Great, Login Success!</h1>` +
+            `<h2>${localName}, Welcome to Quiz-It!</h2>` +
+            `<hr>` +
+            `<button type="button" class="btn btn-primary btn-block btn-lg" id="start" onsubmit="login()">Start Quiz</button>`);
+        } 
+      }, 2000);
+    } else if (localPassword !== 'password') {
+      $(this).prop("disabled", true);
+      $(this).html(`<span class="spinner-border spinner-border-lg" role="status" aria-hidden="true"></span>`);
+
+      setTimeout(function () {
+          loggedIn = true;
+          $(loginForm).children().hide();
+          $(loginForm).html("" +
+            `<i class="fas fa-exclamation-circle"></i>` +
+            `<h1>Sorry, Wrong Password!</h1>` +
+            `<h2>${localName}, Please try again!</h2>` + 
+            `<hr>` +
+            `<button type="button" class="btn btn-primary btn-block btn-lg" id="retry" onsubmit="login()">Try Again</button>`);
+      }, 2000);
+
+
     }
+
   });
 });
 
