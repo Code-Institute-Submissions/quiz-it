@@ -64,7 +64,7 @@
 .form-features button {
   background-color: #365c96;
   border: 0;
-} 
+}
 
 .form-features button:hover {
   background-color: #5681c2;
@@ -132,6 +132,10 @@ input:focus {
   opacity: 0.5;
 }
 
+#errors {
+  color: rgb(218, 19, 19);
+}
+
 /* Responive Queries */
 
 @media only screen and (max-width: 600px) {
@@ -140,8 +144,17 @@ input:focus {
     width: 325px;
     padding: 25px;
   }
+
   .form-features p {
     font-size: 10px;
     font-style: italic;
   }
+}
+
+/* Remove blue background color from input - https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px white inset !important;
 }
