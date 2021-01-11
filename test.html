@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <!-- Styles Sheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/87798f37e6.js" crossorigin="anonymous"></script>
+  <title>Quiz It</title>
+</head>
+
+<body>
+  <!-- Main Container -->
+  <div class="main-container">
+    <!-- Quiz Page Section -->
+    <section>
+      <div class="form-container">
+        <div class="form-features">
+          </form>
+          <form action="quiz-form">
+            <h2>The Quiz:</h2>
+            <div class="progress-bar">
+            </div>
+            <hr>
+            <!-- The question -->
+            <p id="question"></p>
+            <hr>
+            <div class="custom-control custom-radio text-left p-3 quiz-content">
+              <div class="form-check">
+                <input type="radio" id="answer-1" name="answer" class="custom-control-input">
+                <label for="answer-1" class="custom-control-label">Toggle this custom radio</label>
+              </div>
+              <div class="form-check">
+                <input type="radio" id="answer-2" name="answer" class="custom-control-input">
+                <label for="answer-2" class="custom-control-label">Toggle this custom radio</label>
+              </div>
+              <div class="form-check">
+                <input type="radio" id="answer-3" name="answer" class="custom-control-input">
+                <label for="answer-3" class="custom-control-label">Toggle this custom radio</label>
+              </div>
+              <div class="form-check">
+                <input type="radio" id="answer-4" name="answer" class="custom-control-input">
+                <label for="answer-4" class="custom-control-label">Toggle this custom radio</label>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-block btn-lg" onclick="fillForm()">Next</button>
+
+          </form>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  </div>
+
+  </div>
+  <!-- JavaScript -->
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Custom Javscript -->
+  <script src="assets/js/javascript.js"></script>
+</body>
+
+</html>
