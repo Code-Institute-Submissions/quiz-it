@@ -15,9 +15,9 @@
 }
 
 .logout-btn {
-  position: fixed;
-  right: 10px;
-  top: 7px;
+  position: absolute;
+  bottom: 11px;
+  right: 11px;
   border-style: none;
   background-color: rgb(151, 29, 29);
 }
@@ -146,6 +146,17 @@ input:focus {
 
 #errors {
   color: rgb(218, 19, 19);
+}
+
+.correct {
+  color: green;
+  font-weight: bold;
+
+}
+
+.incorrect {
+  color: rgb(218, 19, 19);
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 600px) {
