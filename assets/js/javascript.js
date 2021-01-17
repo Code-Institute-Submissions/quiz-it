@@ -9,6 +9,8 @@ var localPassword;
 var loggedIn = false;
 var data;
 var question;
+var score;
+var totalAnswers;
 
 
 // Run API request on window load
@@ -70,11 +72,43 @@ function fillForm(data) {
       `<label for="answer-4" class="custom-control-label">${answer[3]}</label>` +
       `</div>` +
       `</div>` +
-      `<button type="button" class="btn btn-primary btn-block btn-lg">Next</button>` +
+      `<button type="button" class="btn btn-primary btn-block btn-lg" onclick="selectAnswer()">Next</button>` +
       `</div>`
     );
   }
-  document.querySelector('.question1').style.display = 'block';
+  // document.querySelector('.question1').style.display = 'block';
+  $('.question1').attr('style', 'display:block')
+}
+
+function increaseScore(data) {
+  if (loggedIn) {
+    totalAnswers = 0;
+    totalAnswers++;
+    for (index = 0; index < data.length; index++) {
+      var selected = $('input[name=answer]:checked').next('label').html();
+      var correct_answer = data[index].correct_answer;
+      var incorrect_answers = data[index].incorrect_answers.includes(selected);
+      score = 0;
+      if (selected == correct_answer) {
+        score++;
+        console.log(score);
+        $('input[name=answer]:checked').next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
+      } else if (incorrect_answers) {
+        $('input[name=answer]:checked').next('label').addClass('incorrect').append('<i class="fas fa-times p-2"></i>');
+        for (j = 1; j < 4; j++) {
+          var unSelected = $(`input[id=answer-${j}]`).next('label').html();
+          if (unSelected == correct_answer) {
+            $(`input[id=answer-${j}]`).next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
+          }
+        }
+      }
+
+    }
+  }
+}
+
+function selectAnswer() {
+  increaseScore(data.results);
 }
 
 // Fisher-Yates (aka Knuth) Shuffle algorithm - function borrowed in full from: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
