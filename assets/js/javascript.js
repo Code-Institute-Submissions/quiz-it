@@ -11,6 +11,8 @@ var data;
 var question;
 var score;
 var totalAnswers;
+var answeredQuestions;
+var currentQuestion;
 
 
 // Run API request on window load
@@ -47,7 +49,7 @@ function fillForm(data) {
     console.log(answer);
     console.log("question-" + (index + 1));
     $(quizForm).append("" +
-      `<div class="question${index + 1}" style="display: none;">` +
+      `<div class="question question${index + 1}" style="display: none;">` +
       `<h2>The Quiz:</h2>` +
       `<div class="progress-bar">` +
       `</div>` +
@@ -77,7 +79,8 @@ function fillForm(data) {
     );
   }
   // document.querySelector('.question1').style.display = 'block';
-  $('.question1').attr('style', 'display:block')
+  currentQuestion = document.getElementsByClassName("question1");
+  $(currentQuestion).attr('style', 'display:block');
 }
 
 function increaseScore(data) {
@@ -109,6 +112,7 @@ function increaseScore(data) {
 
 function selectAnswer() {
   increaseScore(data.results);
+  nextQuestion();
 }
 
 // Fisher-Yates (aka Knuth) Shuffle algorithm - function borrowed in full from: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
@@ -163,6 +167,16 @@ function checkPass() {
     localPassword = localStorage.getItem('password');
     return true;
   }
+}
+
+function nextQuestion() {
+  answeredQuestions = 1;
+  answeredQuestions++;
+  setTimeout(function () {
+    $(currentQuestion).remove();
+    nextQuestion = document.getElementsByClassName(`question${answeredQuestions}`);
+    $(nextQuestion).attr('style', 'display:block');
+  }, 2000);
 }
 
 // Validate inputs, add loader and hide login form elements 
