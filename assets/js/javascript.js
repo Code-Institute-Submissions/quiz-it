@@ -9,10 +9,11 @@ var localPassword;
 var loggedIn = false;
 var data;
 var question;
-var score;
-var totalAnswers;
-var answeredQuestions;
+var score = 0;
+var totalAnswers = 0;
+var answeredQuestions = 1;
 var currentQuestion;
+var selected;
 
 
 // Run API request on window load
@@ -33,6 +34,10 @@ async function sendApiRequest() {
   } else {
     fillForm(data.results);
   }
+  // var correctAnswer = correctAnswers(data.results);
+  // var incorrectAnswer = incorrectAnswers(data.results);
+  // console.log(correctAnswer);
+  // console.log(incorrectAnswer);
 }
 
 //Fill form with question and answers
@@ -58,62 +63,89 @@ function fillForm(data) {
       `<hr>` +
       `<div class="custom-control custom-radio text-left p-3 quiz-content">` +
       `<div class="form-check">` +
-      `<input type="radio" id="answer-1" name="answer" class="custom-control-input">` +
-      `<label for="answer-1" class="custom-control-label">${answer[0]}</label>` +
+      `<input type="radio" id="answer-1-q-${index + 1}" name="answer" class="custom-control-input">` +
+      `<label for="answer-1-q-${index + 1}" class="custom-control-label">${answer[0]}</label>` +
       `</div>` +
       `<div class="form-check">` +
-      `<input type="radio" id="answer-2" name="answer" class="custom-control-input">` +
-      `<label for="answer-2" class="custom-control-label">${answer[1]}</label>` +
+      `<input type="radio" id="answer-2-q-${index + 1}" name="answer" class="custom-control-input">` +
+      `<label for="answer-2-q-${index + 1}" class="custom-control-label">${answer[1]}</label>` +
       `</div>` +
       `<div class="form-check">` +
-      `<input type="radio" id="answer-3" name="answer" class="custom-control-input">` +
-      `<label for="answer-3" class="custom-control-label">${answer[2]}</label>` +
+      `<input type="radio" id="answer-3-q-${index + 1}" name="answer" class="custom-control-input">` +
+      `<label for="answer-3-q-${index + 1}" class="custom-control-label">${answer[2]}</label>` +
       `</div>` +
       `<div class="form-check">` +
-      `<input type="radio" id="answer-4" name="answer" class="custom-control-input">` +
-      `<label for="answer-4" class="custom-control-label">${answer[3]}</label>` +
+      `<input type="radio" id="answer-4-q-${index + 1}" name="answer" class="custom-control-input">` +
+      `<label for="answer-4-q-${index + 1}" class="custom-control-label">${answer[3]}</label>` +
       `</div>` +
+      `</div>` +
+      `<div class="incorrect p-2">` +
       `</div>` +
       `<button type="button" class="btn btn-primary btn-block btn-lg" onclick="selectAnswer()">Next</button>` +
       `</div>`
     );
   }
   // document.querySelector('.question1').style.display = 'block';
-  currentQuestion = document.getElementsByClassName("question1");
-  $(currentQuestion).attr('style', 'display:block');
+  // currentQuestion = document.getElementsByClassName("question1");
+  $(document.getElementsByClassName("question1")).attr('style', 'display:block');
 }
 
-function increaseScore(data) {
-  if (loggedIn) {
-    totalAnswers = 0;
+// Change to jquery - https://stackoverflow.com/questions/4323848/how-to-handle-button-click-events-in-jquery 
+function checkAnswer() {
+  var checked = document.getElementsByTagName('input').checked;
+  if (checked) {
     totalAnswers++;
-    for (index = 0; index < data.length; index++) {
-      var selected = $('input[name=answer]:checked').next('label').html();
-      var correct_answer = data[index].correct_answer;
-      var incorrect_answers = data[index].incorrect_answers.includes(selected);
-      score = 0;
-      if (selected == correct_answer) {
+    selected = $(`input[name=answer]:checked`).next('label').html();
+    var ca = correctAnswers(data.results);
+    var ia = incorrectAnswers(data.results);
+    for (j = 1; j <= 4; j++) {
+      // selected = $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').html();
+
+      if (ca.includes(selected)) {
         score++;
-        console.log(score);
-        $('input[name=answer]:checked').next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
-      } else if (incorrect_answers) {
-        $('input[name=answer]:checked').next('label').addClass('incorrect').append('<i class="fas fa-times p-2"></i>');
-        for (j = 1; j < 4; j++) {
-          var unSelected = $(`input[id=answer-${j}]`).next('label').html();
-          if (unSelected == correct_answer) {
-            $(`input[id=answer-${j}]`).next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
-          }
+        $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
+      } else if (ia.includes(selected)) {
+        $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('incorrect').append('<i class="fas fa-times p-2"></i>');
+
+        var unSelected = $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').html();
+        // var unchecked = $(`input[id=answer-${j}-q-${totalAnswers}]`).prop("checked", false);
+        if (ca.includes(unSelected)) {
+          $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
         }
       }
-
     }
+
+    // if (ca.includes(selected)) {
+    //   score++;
+    //   $('input[name=answer]:checked').next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
+    // } else if (ia.includes(selected)) {
+    //   $('input[name=answer]:checked').next('label').addClass('incorrect').append('<i class="fas fa-times p-2"></i>');
+    //   for (j = 1; j < 4; j++) {
+    //     var unSelected = $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').html();
+    //     if (ca.includes(unSelected)) {
+    //       $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
+    //     }
+    //   }
+    // }
+  } else {
+    $('.incorrect').html('Please select an answer to proceed!');
+    $(quizForm).trigger("reset");
+    return;
   }
 }
 
 function selectAnswer() {
-  increaseScore(data.results);
-  nextQuestion();
+  checkAnswer(data);
+  // isChecked();
 }
+
+// function isChecked() {
+//   if (document.getElementsByTagName('input').checked) {
+//     nextQuestion();
+//   } else {
+//     $('.incorrect').html('Please select an answer to proceed!');
+//   }
+// }
 
 // Fisher-Yates (aka Knuth) Shuffle algorithm - function borrowed in full from: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
@@ -170,12 +202,12 @@ function checkPass() {
 }
 
 function nextQuestion() {
-  answeredQuestions = 1;
-  answeredQuestions++;
   setTimeout(function () {
-    $(currentQuestion).remove();
-    nextQuestion = document.getElementsByClassName(`question${answeredQuestions}`);
-    $(nextQuestion).attr('style', 'display:block');
+    $(document.getElementsByClassName(`question${answeredQuestions}`)).remove();
+    $("input").prop("checked", false);
+    answeredQuestions++;
+    // nextQuestion = document.getElementsByClassName(`question${answeredQuestions++}`);
+    $(document.getElementsByClassName(`question${answeredQuestions}`)).attr('style', 'display:block');
   }, 2000);
 }
 
@@ -241,3 +273,22 @@ $(document).ready(function () {
     });
   });
 });
+
+
+
+function correctAnswers(data) {
+  var allCorrect = [];
+  for (index = 0; index < data.length; index++) {
+    allCorrect.push(data[index].correct_answer);
+  }
+  return allCorrect;
+}
+
+function incorrectAnswers(data) {
+  var allIncorrect = [];
+  for (index = 0; index < data.length; index++) {
+    // InCorrect.push(data[index].incorrect_answers);
+    allIncorrect.push(...data[index].incorrect_answers)
+  }
+  return allIncorrect;
+}
