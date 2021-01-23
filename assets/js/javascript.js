@@ -12,16 +12,15 @@ var question;
 var score = 0;
 var totalAnswers = 0;
 var answeredQuestions = 1;
-var currentQuestion;
 var selected;
 
 
-// Run API request on window load
+// Call sendApiRequest to start the Quiz
 function startQuiz() {
   sendApiRequest();
 }
 
-//Get questions from the API
+// Get questions from the API
 async function sendApiRequest() {
   const url = 'https://opentdb.com/api.php?amount=10&type=multiple';
   const response = await fetch(url);
@@ -34,13 +33,9 @@ async function sendApiRequest() {
   } else {
     fillForm(data.results);
   }
-  // var correctAnswer = correctAnswers(data.results);
-  // var incorrectAnswer = incorrectAnswers(data.results);
-  // console.log(correctAnswer);
-  // console.log(incorrectAnswer);
 }
 
-//Fill form with question and answers
+// Fill form with question and answers
 function fillForm(data) {
   console.log("Success!");
   $(loginForm).children().remove();
@@ -81,73 +76,53 @@ function fillForm(data) {
       `</div>` +
       `<div class="incorrect p-2">` +
       `</div>` +
-      `<button type="button" class="btn btn-primary btn-block btn-lg" onclick="selectAnswer()">Next</button>` +
+      `<button type="button" class="btn btn-primary btn-block btn-lg nxtBtn">Next</button>` +
       `</div>`
     );
   }
-  // document.querySelector('.question1').style.display = 'block';
-  // currentQuestion = document.getElementsByClassName("question1");
+
   $(document.getElementsByClassName("question1")).attr('style', 'display:block');
 }
 
-// Change to jquery - https://stackoverflow.com/questions/4323848/how-to-handle-button-click-events-in-jquery 
+// Check whether answer is correct or incorrect
 function checkAnswer() {
-  var checked = document.getElementsByTagName('input').checked;
-  if (checked) {
-    totalAnswers++;
-    selected = $(`input[name=answer]:checked`).next('label').html();
-    var ca = correctAnswers(data.results);
-    var ia = incorrectAnswers(data.results);
-    for (j = 1; j <= 4; j++) {
-      // selected = $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').html();
+  totalAnswers++;
+  selected = $(`input[name=answer]:checked`).next('label').html();
+  var correct = correctAnswers(data.results);
+  var incorrect = incorrectAnswers(data.results);
+  for (j = 1; j <= 4; j++) {
+    if (correct.includes(selected)) {
+      score++;
+      $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
+    } else if (incorrect.includes(selected)) {
+      $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('incorrect').append('<i class="fas fa-times p-2"></i>');
 
-      if (ca.includes(selected)) {
-        score++;
-        $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
-      } else if (ia.includes(selected)) {
-        $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('incorrect').append('<i class="fas fa-times p-2"></i>');
+      var unSelected = $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').html();
 
-        var unSelected = $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').html();
-        // var unchecked = $(`input[id=answer-${j}-q-${totalAnswers}]`).prop("checked", false);
-        if (ca.includes(unSelected)) {
-          $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
-        }
+      if (correct.includes(unSelected)) {
+        $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
       }
     }
-
-    // if (ca.includes(selected)) {
-    //   score++;
-    //   $('input[name=answer]:checked').next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
-    // } else if (ia.includes(selected)) {
-    //   $('input[name=answer]:checked').next('label').addClass('incorrect').append('<i class="fas fa-times p-2"></i>');
-    //   for (j = 1; j < 4; j++) {
-    //     var unSelected = $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').html();
-    //     if (ca.includes(unSelected)) {
-    //       $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
-    //     }
-    //   }
-    // }
-  } else {
-    $('.incorrect').html('Please select an answer to proceed!');
-    $(quizForm).trigger("reset");
-    return;
   }
 }
 
-function selectAnswer() {
-  checkAnswer(data);
-  // isChecked();
-}
+// On submit answer - validate if checked, check against answer and retrieve next question
+$(document).ready(function () {
+  $(quizForm).on('click', '.nxtBtn', function () {
+    if (!$('input').is(':checked')) {
+      console.log("Not Checked!");
+      $('.incorrect').html('Please select an answer to proceed!');
+    } else {
+      console.log("Checked");
+      checkAnswer();
+      nextQuestion();
+    }
+  });
+});
 
-// function isChecked() {
-//   if (document.getElementsByTagName('input').checked) {
-//     nextQuestion();
-//   } else {
-//     $('.incorrect').html('Please select an answer to proceed!');
-//   }
-// }
 
 // Fisher-Yates (aka Knuth) Shuffle algorithm - function borrowed in full from: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+// Randomize the array
 function shuffle(array) {
   var currentIndex = array.length,
     temporaryValue, randomIndex;
@@ -165,12 +140,10 @@ function shuffle(array) {
   return array;
 }
 
-
+// Append correct answer with the incorrect answers array
 function getAnswers(answers) {
-  // totalAnswers.push(answers.correct_answer);
-  // totalAnswers.push(answers.incorrect_answers);
-  var totalAnswers = answers.incorrect_answers.concat(answers.correct_answer);
-  return totalAnswers;
+  var allAnswers = answers.incorrect_answers.concat(answers.correct_answer);
+  return allAnswers;
 }
 
 
@@ -201,8 +174,10 @@ function checkPass() {
   }
 }
 
+// Load the next question
 function nextQuestion() {
   setTimeout(function () {
+    $('.incorrect').empty();
     $(document.getElementsByClassName(`question${answeredQuestions}`)).remove();
     $("input").prop("checked", false);
     answeredQuestions++;
@@ -251,6 +226,7 @@ $(document).ready(function () {
   });
 });
 
+// Reload the page
 function reloadPage() {
   window.location.reload();
   return false;
@@ -275,7 +251,7 @@ $(document).ready(function () {
 });
 
 
-
+// Put all correct answers in an array
 function correctAnswers(data) {
   var allCorrect = [];
   for (index = 0; index < data.length; index++) {
@@ -284,10 +260,10 @@ function correctAnswers(data) {
   return allCorrect;
 }
 
+//Put all incorrect answers in an array
 function incorrectAnswers(data) {
   var allIncorrect = [];
   for (index = 0; index < data.length; index++) {
-    // InCorrect.push(data[index].incorrect_answers);
     allIncorrect.push(...data[index].incorrect_answers)
   }
   return allIncorrect;
