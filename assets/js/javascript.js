@@ -4,6 +4,7 @@ var userPw = document.getElementById('password');
 var loginBtn = document.getElementById('login');
 var loginForm = document.getElementById("login-form");
 var quizForm = document.getElementById("quiz");
+var progressBarComplete = document.getElementsByClassName('progress-bar-complete');
 var localName;
 var localPassword;
 var loggedIn = false;
@@ -13,6 +14,9 @@ var score = 0;
 var totalAnswers = 0;
 var answeredQuestions = 1;
 var selected;
+const TOTAL_QUESTIONS = 10;
+
+
 
 
 // Call sendApiRequest to start the Quiz
@@ -52,6 +56,8 @@ function fillForm(data) {
       `<div class="question question${index + 1}" style="display: none;">` +
       `<h2>The Quiz:</h2>` +
       `<div class="progress-bar">` +
+      `<div class="progress-bar-complete">` +
+      `</div>` +
       `</div>` +
       `<hr>` +
       `<p id="question">Question ${index + 1}:${question}</p>` +
@@ -87,12 +93,18 @@ function fillForm(data) {
 // Check whether answer is correct or incorrect
 function checkAnswer() {
   totalAnswers++;
+  // Progress bar logic from - https://medium.com/javascript-in-plain-english/building-a-progress-bar-in-css-js-html-from-scratch-6449da06042
+  var increase = `${(totalAnswers / TOTAL_QUESTIONS) * 100}%`;
+  $(progressBarComplete).width(increase);
   selected = $(`input[name=answer]:checked`).next('label').html();
   var correct = correctAnswers(data.results);
   var incorrect = incorrectAnswers(data.results);
+  if (correct.includes(selected)) {
+    score++;
+  }
   for (j = 1; j <= 4; j++) {
     if (correct.includes(selected)) {
-      score++;
+      // score++;
       $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
     } else if (incorrect.includes(selected)) {
       $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('incorrect').append('<i class="fas fa-times p-2"></i>');
@@ -113,9 +125,9 @@ $(document).ready(function () {
       console.log("Not Checked!");
       $('.incorrect').html('Please select an answer to proceed!');
     } else {
-      console.log("Checked");
       checkAnswer();
       nextQuestion();
+      console.log(score);
     }
   });
 });
@@ -176,14 +188,32 @@ function checkPass() {
 
 // Load the next question
 function nextQuestion() {
-  setTimeout(function () {
-    $('.incorrect').empty();
-    $(document.getElementsByClassName(`question${answeredQuestions}`)).remove();
-    $("input").prop("checked", false);
-    answeredQuestions++;
-    // nextQuestion = document.getElementsByClassName(`question${answeredQuestions++}`);
-    $(document.getElementsByClassName(`question${answeredQuestions}`)).attr('style', 'display:block');
-  }, 2000);
+  if (totalAnswers < 10) {
+    setTimeout(function () {
+      $('.incorrect').empty();
+      $(document.getElementsByClassName(`question${answeredQuestions}`)).remove();
+      $("input").prop("checked", false);
+      answeredQuestions++;
+      // nextQuestion = document.getElementsByClassName(`question${answeredQuestions++}`);
+      $(document.getElementsByClassName(`question${answeredQuestions}`)).attr('style', 'display:block');
+    }, 2000);
+  } else {
+    if (score >= 5) {
+      $(quizForm).html("" +
+        `<i class="fas fa-trophy"></i>` +
+        `<p class="end-p">Congratulations ${localName}, you have reached the end of the Quiz!</p>` +
+        `<p class="end-p">You answered <strong>${score}/10</strong>, well done!</p>` +
+        '<hr>' +
+        `<button type="button" class="btn btn-primary btn-block btn-lg" id="playAgain" onclick="reloadPage()">Play Again</button>`);
+    } else {
+      $(quizForm).html("" +
+        `<i class="fas fa-sad-tear"></i>` +
+        `<p class="end-p">Good attempt ${localName}, you have reached the end of the Quiz!</p>` +
+        `<p class="end-p">You answered <strong>${score}/10</strong>, better luck next time!</p>` +
+        '<hr>' +
+        `<button type="button" class="btn btn-primary btn-block btn-lg" id="playAgain" onclick="reloadPage()">Play Again</button>`);
+    }
+  }
 }
 
 // Validate inputs, add loader and hide login form elements 
