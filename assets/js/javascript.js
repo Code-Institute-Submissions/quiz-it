@@ -203,29 +203,33 @@ function nextQuestion() {
     }, 2000);
   } else {
     if (score >= 5) {
-      $(quizForm).html("" +
-        `<i class="fas fa-trophy"></i>` +
-        `<div class="success-progress-bar">` +
-        `<div class="success-progress-bar-complete">` +
-        `</div>` +
-        `</div>` +
-        `<p class="end-p">Congratulations ${localName}, you have reached the end of the Quiz!</p>` +
-        `<p class="end-p">You answered <strong>${score}/10</strong>, well done!</p>` +
-        '<hr>' +
-        `<button type="button" class="btn btn-primary btn-block btn-lg" id="playAgain" onclick="reloadPage()">Play Again</button>`);
-      $(progressBarSuccess).width(correctIncrease);
+      setTimeout(function () {
+        $(quizForm).html("" +
+          `<i class="fas fa-trophy"></i>` +
+          `<div class="success-progress-bar">` +
+          `<div class="success-progress-bar-complete">` +
+          `</div>` +
+          `</div>` +
+          `<p class="end-p">Congratulations ${localName}, you have reached the end of the Quiz!</p>` +
+          `<p class="end-p">You answered <strong>${score}/10</strong>, well done!</p>` +
+          '<hr>' +
+          `<button type="button" class="btn btn-primary btn-block btn-lg" id="playAgain" onclick="reloadPage()">Play Again</button>`);
+        $(progressBarSuccess).width(correctIncrease);
+      }, 2000);
     } else {
-      $(quizForm).html("" +
-        `<i class="fas fa-sad-tear"></i>` +
-        `<div class="fail-progress-bar">` +
-        `<div class="fail-progress-bar-complete">` +
-        `</div>` +
-        `</div>` +
-        `<p class="end-p">Good attempt ${localName}, you have reached the end of the Quiz!</p>` +
-        `<p class="end-p">You answered <strong>${score}/10</strong>, better luck next time!</p>` +
-        '<hr>' +
-        `<button type="button" class="btn btn-primary btn-block btn-lg" id="playAgain" onclick="reloadPage()">Play Again</button>`);
-      $(progressBarFail).width(correctIncrease);
+      setTimeout(function () {
+        $(quizForm).html("" +
+          `<i class="fas fa-sad-tear"></i>` +
+          `<div class="fail-progress-bar">` +
+          `<div class="fail-progress-bar-complete">` +
+          `</div>` +
+          `</div>` +
+          `<p class="end-p">Good attempt ${localName}, you have reached the end of the Quiz!</p>` +
+          `<p class="end-p">You answered <strong>${score}/10</strong>, better luck next time!</p>` +
+          '<hr>' +
+          `<button type="button" class="btn btn-primary btn-block btn-lg" id="playAgain" onclick="reloadPage()">Play Again</button>`);
+        $(progressBarFail).width(correctIncrease);
+      }, 2000);
     }
 
   }
