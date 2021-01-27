@@ -17,6 +17,8 @@ var totalAnswers = 0;
 var answeredQuestions = 1;
 var selected;
 var correctIncrease;
+var correctStr;
+var incorrectStr;
 const TOTAL_QUESTIONS = 10;
 
 
@@ -99,9 +101,13 @@ function checkAnswer() {
   // Progress bar logic from - https://medium.com/javascript-in-plain-english/building-a-progress-bar-in-css-js-html-from-scratch-6449da06042
   var increase = `${(totalAnswers / TOTAL_QUESTIONS) * 100}%`;
   $(progressBarComplete).width(increase);
-  selected = $(`input[name=answer]:checked`).next('label').html();
+  selected = $(`input[name=answer]:checked`).next('label').text();
   var correct = correctAnswers(data.results);
   var incorrect = incorrectAnswers(data.results);
+  correct = formatCorrect(correct);
+  console.log(correct);
+  incorrect = formatInCorrect(incorrect);
+  console.log(incorrect);
   if (correct.includes(selected)) {
     score++;
     correctIncrease = `${(score / TOTAL_QUESTIONS) * 100}%`;
@@ -113,7 +119,7 @@ function checkAnswer() {
     } else if (incorrect.includes(selected)) {
       $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('incorrect').append('<i class="fas fa-times p-2"></i>');
 
-      var unSelected = $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').html();
+      var unSelected = $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').text();
 
       if (correct.includes(unSelected)) {
         $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
@@ -317,3 +323,23 @@ function incorrectAnswers(data) {
   }
   return allIncorrect;
 }
+
+function formatCorrect(data) {
+  var correctFormatted = [];
+  for (j = 0; j < data.length; j++) {
+    correctStr = $('<textarea/>').html(data[j]).text();
+    correctFormatted.push(correctStr);
+  }
+  return correctFormatted;
+}
+
+function formatInCorrect(data) {
+  var incorrectFormatted = [];
+  for (j = 0; j < data.length; j++) {
+    incorrectStr = $('<textarea/>').html(data[j]).text();
+    incorrectFormatted.push(incorrectStr);
+  }
+  return incorrectFormatted;
+}
+
+
