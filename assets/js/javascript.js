@@ -5,6 +5,8 @@ var loginBtn = document.getElementById('login');
 var loginForm = document.getElementById("login-form");
 var quizForm = document.getElementById("quiz");
 var progressBarComplete = document.getElementsByClassName('progress-bar-complete');
+var progressBarSuccess = document.getElementsByClassName('success-progress-bar-complete');
+var progressBarFail = document.getElementsByClassName('fail-progress-bar-complete');
 var localName;
 var localPassword;
 var loggedIn = false;
@@ -14,6 +16,7 @@ var score = 0;
 var totalAnswers = 0;
 var answeredQuestions = 1;
 var selected;
+var correctIncrease;
 const TOTAL_QUESTIONS = 10;
 
 
@@ -101,6 +104,7 @@ function checkAnswer() {
   var incorrect = incorrectAnswers(data.results);
   if (correct.includes(selected)) {
     score++;
+    correctIncrease = `${(score / TOTAL_QUESTIONS) * 100}%`;
   }
   for (j = 1; j <= 4; j++) {
     if (correct.includes(selected)) {
@@ -201,18 +205,29 @@ function nextQuestion() {
     if (score >= 5) {
       $(quizForm).html("" +
         `<i class="fas fa-trophy"></i>` +
+        `<div class="success-progress-bar">` +
+        `<div class="success-progress-bar-complete">` +
+        `</div>` +
+        `</div>` +
         `<p class="end-p">Congratulations ${localName}, you have reached the end of the Quiz!</p>` +
         `<p class="end-p">You answered <strong>${score}/10</strong>, well done!</p>` +
         '<hr>' +
         `<button type="button" class="btn btn-primary btn-block btn-lg" id="playAgain" onclick="reloadPage()">Play Again</button>`);
+      $(progressBarSuccess).width(correctIncrease);
     } else {
       $(quizForm).html("" +
         `<i class="fas fa-sad-tear"></i>` +
+        `<div class="fail-progress-bar">` +
+        `<div class="fail-progress-bar-complete">` +
+        `</div>` +
+        `</div>` +
         `<p class="end-p">Good attempt ${localName}, you have reached the end of the Quiz!</p>` +
         `<p class="end-p">You answered <strong>${score}/10</strong>, better luck next time!</p>` +
         '<hr>' +
         `<button type="button" class="btn btn-primary btn-block btn-lg" id="playAgain" onclick="reloadPage()">Play Again</button>`);
+      $(progressBarFail).width(correctIncrease);
     }
+
   }
 }
 
