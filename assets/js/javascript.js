@@ -57,37 +57,37 @@ function fillForm(data) {
   console.log("Success!");
   $(loginForm).children().remove();
   $(quizForm).children().remove();
-  for (index = 0; index < data.length; index++) {
-    const element = data[index];
-    const question = data[index].question;
+  for (i = 0; i < data.length; i++) {
+    const element = data[i];
+    const question = data[i].question;
     var answer = getAnswers(element);
     shuffle(answer);
     $(quizForm).append("" +
-      `<div class="question question${index + 1}" style="display: none;">` +
+      `<div class="question question${i + 1}" style="display: none;">` +
       `<h2>The Quiz:</h2>` +
       `<div class="progress-bar">` +
       `<div class="progress-bar-complete">` +
       `</div>` +
       `</div>` +
       `<hr>` +
-      `<p id="question">Question ${index + 1}:&nbsp;${question}</p>` +
+      `<p id="question">Question ${i + 1}:&nbsp;${question}</p>` +
       `<hr>` +
       `<div class="custom-control custom-radio text-left p-3 quiz-content">` +
       `<div class="form-check">` +
-      `<input type="radio" id="answer-1-q-${index + 1}" name="answer" class="custom-control-input">` +
-      `<label for="answer-1-q-${index + 1}" class="custom-control-label">${answer[0]}</label>` +
+      `<input type="radio" id="answer-1-q-${i + 1}" name="answer" class="custom-control-input">` +
+      `<label for="answer-1-q-${i + 1}" class="custom-control-label">${answer[0]}</label>` +
       `</div>` +
       `<div class="form-check">` +
-      `<input type="radio" id="answer-2-q-${index + 1}" name="answer" class="custom-control-input">` +
-      `<label for="answer-2-q-${index + 1}" class="custom-control-label">${answer[1]}</label>` +
+      `<input type="radio" id="answer-2-q-${i + 1}" name="answer" class="custom-control-input">` +
+      `<label for="answer-2-q-${i + 1}" class="custom-control-label">${answer[1]}</label>` +
       `</div>` +
       `<div class="form-check">` +
-      `<input type="radio" id="answer-3-q-${index + 1}" name="answer" class="custom-control-input">` +
-      `<label for="answer-3-q-${index + 1}" class="custom-control-label">${answer[2]}</label>` +
+      `<input type="radio" id="answer-3-q-${i + 1}" name="answer" class="custom-control-input">` +
+      `<label for="answer-3-q-${i + 1}" class="custom-control-label">${answer[2]}</label>` +
       `</div>` +
       `<div class="form-check">` +
-      `<input type="radio" id="answer-4-q-${index + 1}" name="answer" class="custom-control-input">` +
-      `<label for="answer-4-q-${index + 1}" class="custom-control-label">${answer[3]}</label>` +
+      `<input type="radio" id="answer-4-q-${i + 1}" name="answer" class="custom-control-input">` +
+      `<label for="answer-4-q-${i + 1}" class="custom-control-label">${answer[3]}</label>` +
       `</div>` +
       `</div>` +
       `<div class="incorrect p-2">` +
@@ -286,6 +286,7 @@ $(document).ready(function () {
           '</select>' +
           `</div>` +
           `</div>` +
+          `<p class="p-2">* If nothing selected a variety of categories and difficulties will be chosen</p>` +
           `<hr>` +
           `<button type="button" class="btn btn-primary btn-block btn-lg" id="start" onclick="startQuiz()">Start Quiz</button>`);
       }, 2000);
