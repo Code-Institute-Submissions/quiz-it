@@ -24,6 +24,7 @@ const TOTAL_QUESTIONS = 10;
 
 
 
+
 // Call sendApiRequest to start the Quiz
 function startQuiz() {
   sendApiRequest();
@@ -31,7 +32,15 @@ function startQuiz() {
 
 // Get questions from the API
 async function sendApiRequest() {
-  const url = 'https://opentdb.com/api.php?amount=10&type=multiple';
+  var category = $('#category option:selected').val();
+  var difficulty = $('#difficulty option:selected').text().toLowerCase();
+  if (category == "Select...") {
+    category = "";
+  }
+  if (difficulty == "select...") {
+    difficulty = "";
+  }
+  var url = `https://opentdb.com/api.php?amount=10&type=multiple&category=${category}&difficulty=${difficulty}`;
   const response = await fetch(url);
   console.log(response);
   data = await response.json();
@@ -65,7 +74,7 @@ function fillForm(data) {
       `</div>` +
       `</div>` +
       `<hr>` +
-      `<p id="question">Question ${index + 1}:${question}</p>` +
+      `<p id="question">Question ${index + 1}:&nbsp;${question}</p>` +
       `<hr>` +
       `<div class="custom-control custom-radio text-left p-3 quiz-content">` +
       `<div class="form-check">` +
@@ -258,6 +267,32 @@ $(document).ready(function () {
           `<h1>Login Success!</h1>` +
           `<h2>Welcome ${localName}!</h2>` +
           `<hr>` +
+          `<div class="form-row align-items-center text-center">` +
+          `<div class="col-auto my-1">` +
+          `<label class="mr-sm-2" for="category">Category</label>` +
+          `<select class="custom-select mr-sm-2" id="category">` +
+          `<option selected>Select...</option>` +
+          `<option value="9">General</option>` +
+          `<option value="21">Sports</option>` +
+          `<option value="23">History</option>` +
+          `<option value="11">Film</option>` +
+          `<option value="12">Music</option>` +
+          `<option value="17">Science</option>` +
+          `<option value="">Anything</option>` +
+          '</select>' +
+          `</div>` +
+          `<div class="col-auto my-1">` +
+          `<label class="mr-sm-2" for="difficulty">Diffculty</label>` +
+          `<select class="custom-select mr-sm-2" id="difficulty">` +
+          `<option selected>Select...</option>` +
+          `<option value="1">Easy</option>` +
+          `<option value="2">Medium</option>` +
+          `<option value="3">Hard</option>` +
+          `<option value="">Any diffculty</option>` +
+          `</select>` +
+          '</div>' +
+          `</div>` +
+          `<hr>` +
           `<button type="button" class="btn btn-primary btn-block btn-lg" id="start" onclick="startQuiz()">Start Quiz</button>`);
       }, 2000);
     } else if (checkName() && checkPass() && localName.length > 0 && localPassword !== 'password') {
@@ -324,6 +359,7 @@ function incorrectAnswers(data) {
   return allIncorrect;
 }
 
+// Convert correct answers from HTML entities to text
 function formatCorrect(data) {
   var correctFormatted = [];
   for (j = 0; j < data.length; j++) {
@@ -333,6 +369,7 @@ function formatCorrect(data) {
   return correctFormatted;
 }
 
+// Convert incorrect answers from HTML entities to text
 function formatInCorrect(data) {
   var incorrectFormatted = [];
   for (j = 0; j < data.length; j++) {
@@ -341,5 +378,3 @@ function formatInCorrect(data) {
   }
   return incorrectFormatted;
 }
-
-
