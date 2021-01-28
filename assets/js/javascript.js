@@ -19,6 +19,7 @@ var selected;
 var correctIncrease;
 var correctStr;
 var incorrectStr;
+var questionAnswer;
 const TOTAL_QUESTIONS = 10;
 
 
@@ -42,9 +43,7 @@ async function sendApiRequest() {
   }
   var url = `https://opentdb.com/api.php?amount=10&type=multiple&category=${category}&difficulty=${difficulty}`;
   const response = await fetch(url);
-  console.log(response);
   data = await response.json();
-  console.log(data);
 
   if (!response.ok) {
     document.getElementById('errors').innerHTML = `Sorry a ${response.status} error has occured. Try again later.`;
@@ -63,9 +62,6 @@ function fillForm(data) {
     const question = data[index].question;
     var answer = getAnswers(element);
     shuffle(answer);
-    console.log(question);
-    console.log(answer);
-    console.log("question-" + (index + 1));
     $(quizForm).append("" +
       `<div class="question question${index + 1}" style="display: none;">` +
       `<h2>The Quiz:</h2>` +
@@ -106,6 +102,7 @@ function fillForm(data) {
 
 // Check whether answer is correct or incorrect
 function checkAnswer() {
+  questionAnswer = data.results[totalAnswers].correct_answer;
   totalAnswers++;
   // Progress bar logic from - https://medium.com/javascript-in-plain-english/building-a-progress-bar-in-css-js-html-from-scratch-6449da06042
   var increase = `${(totalAnswers / TOTAL_QUESTIONS) * 100}%`;
@@ -114,24 +111,22 @@ function checkAnswer() {
   var correct = correctAnswers(data.results);
   var incorrect = incorrectAnswers(data.results);
   correct = formatCorrect(correct);
-  console.log(correct);
   incorrect = formatInCorrect(incorrect);
-  console.log(incorrect);
-  if (correct.includes(selected)) {
+  if (correct.includes(selected) && selected == questionAnswer) {
     score++;
     correctIncrease = `${(score / TOTAL_QUESTIONS) * 100}%`;
   }
   for (j = 1; j <= 4; j++) {
-    if (correct.includes(selected)) {
+    if (correct.includes(selected) && questionAnswer == selected) {
       // score++;
-      $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
+      $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('correct');
     } else if (incorrect.includes(selected)) {
-      $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('incorrect').append('<i class="fas fa-times p-2"></i>');
+      $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('incorrect');
 
       var unSelected = $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').text();
 
       if (correct.includes(unSelected)) {
-        $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').addClass('correct').append('<i class="fas fa-check p-2"></i>');
+        $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').addClass('correct');
       }
     }
   }
@@ -141,12 +136,10 @@ function checkAnswer() {
 $(document).ready(function () {
   $(quizForm).on('click', '.nxtBtn', function () {
     if (!$('input').is(':checked')) {
-      console.log("Not Checked!");
       $('.incorrect').html('Please select an answer to proceed!');
     } else {
       checkAnswer();
       nextQuestion();
-      console.log(score);
     }
   });
 });
@@ -213,7 +206,6 @@ function nextQuestion() {
       $(document.getElementsByClassName(`question${answeredQuestions}`)).remove();
       $("input").prop("checked", false);
       answeredQuestions++;
-      // nextQuestion = document.getElementsByClassName(`question${answeredQuestions++}`);
       $(document.getElementsByClassName(`question${answeredQuestions}`)).attr('style', 'display:block');
     }, 2000);
   } else {
@@ -267,7 +259,19 @@ $(document).ready(function () {
           `<h1>Login Success!</h1>` +
           `<h2>Welcome ${localName}!</h2>` +
           `<hr>` +
-          `<div class="form-row align-items-center text-center">` +
+          `<div class="form-row align-items-center justify-content-center">` +
+          `<div class="col-auto my-1">` +
+          `<label class="mr-sm-2" for="difficulty">Diffculty</label>` +
+          `<select class="custom-select mr-sm-2" id="difficulty">` +
+          `<option selected>Select...</option>` +
+          `<option value="1">Easy</option>` +
+          `<option value="2">Medium</option>` +
+          `<option value="3">Hard</option>` +
+          `<option value="">Any difficulty</option>` +
+          `</select>` +
+          `</div>` +
+          `</div>` +
+          `<div class="form-row align-items-center justify-content-center">` +
           `<div class="col-auto my-1">` +
           `<label class="mr-sm-2" for="category">Category</label>` +
           `<select class="custom-select mr-sm-2" id="category">` +
@@ -278,19 +282,9 @@ $(document).ready(function () {
           `<option value="11">Film</option>` +
           `<option value="12">Music</option>` +
           `<option value="17">Science</option>` +
-          `<option value="">Anything</option>` +
+          `<option value="">A mix of categories</option>` +
           '</select>' +
           `</div>` +
-          `<div class="col-auto my-1">` +
-          `<label class="mr-sm-2" for="difficulty">Diffculty</label>` +
-          `<select class="custom-select mr-sm-2" id="difficulty">` +
-          `<option selected>Select...</option>` +
-          `<option value="1">Easy</option>` +
-          `<option value="2">Medium</option>` +
-          `<option value="3">Hard</option>` +
-          `<option value="">Any diffculty</option>` +
-          `</select>` +
-          '</div>' +
           `</div>` +
           `<hr>` +
           `<button type="button" class="btn btn-primary btn-block btn-lg" id="start" onclick="startQuiz()">Start Quiz</button>`);

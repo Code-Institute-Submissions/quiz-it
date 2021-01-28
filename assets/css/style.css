@@ -159,11 +159,13 @@ input:focus {
   font-weight: bold;
 }
 
+
 @media only screen and (max-width: 600px) {
   .form-container {
     margin: auto;
     width: 325px;
     padding: 25px;
+    font-size: 12px;
   }
 
   .form-features p {
