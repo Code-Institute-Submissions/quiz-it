@@ -20,10 +20,10 @@ Any username can be used and the default password is: **password**
 ### Strategy
 
 #### User Stories
-> As a user, I want the application to test my knowledge on a variety of topics.
-> As a user, I want the application to provide a choice on the category and difficulty level I will be tested on. 
-> As a user, I want an application that will provide results on the number of questions answered correctly or incorrectly. 
-> As a user , I want confirmation from the application whether I've logged in successfully or unsuccessfully. 
+- As a user, I want the application to test my knowledge on a variety of topics.
+- As a user, I want the application to provide a choice on the category and difficulty level I will be tested on. 
+- As a user, I want an application that will provide results on the number of questions answered correctly or incorrectly. 
+- As a user , I want confirmation from the application whether I've logged in successfully or unsuccessfully. 
 
 ### Scope/Features 
 
@@ -40,5 +40,11 @@ The application is displayed on one page which is dynamically loaded based on us
 
 I used [Balsamiq](https://balsamiq.com) to create a wireframe for each event presented to the user. 
 
-- [Login Form]()
- 
+- [Login Form](https://github.com/seamusmacg/quiz-it/blob/master/images/login-wireframe.png)
+- [Login Form Success](https://github.com/seamusmacg/quiz-it/blob/master/images/login-success-wireframe.png)
+- [Login Form Failure](https://github.com/seamusmacg/quiz-it/blob/master/images/login-failure-wireframe.png)
+- [Quiz Form Question](https://github.com/seamusmacg/quiz-it/blob/master/images/question-wireframe.png)
+- [Quiz Form Pass](https://github.com/seamusmacg/quiz-it/blob/master/images/quiz-pass-wireframe.png)
+- [Quiz Form Fail](https://github.com/seamusmacg/quiz-it/blob/master/images/quiz-fail-wireframe.png)
+
+The application's layout aims for intuitive design where the user knows how to proceed based what they see. 
