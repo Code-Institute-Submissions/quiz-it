@@ -52,9 +52,9 @@ The application's layout aims for intuitive design where the user knows how to p
 ### Colour
 
 - ![#FF0000](https://via.placeholder.com/15/FF0000/000000?text=+) `#FF0000`
-- ![#8fabd6](https://via.placeholder.com/15/8fabd6/000000?text=+) `#8fabd6`
-- ![#971d1d](https://via.placeholder.com/15/971d1d/000000?text=+) `#971d1d`
 - ![#008000](https://via.placeholder.com/15/008000/000000?text=+) `#008000`
+- ![#971d1d](https://via.placeholder.com/15/971d1d/000000?text=+) `#971d1d`
+- ![#8fabd6](https://via.placeholder.com/15/8fabd6/000000?text=+) `#8fabd6`
 - ![#5681c2](https://via.placeholder.com/15/5681c2/000000?text=+) `#5681c2`
 - ![#223a5e](https://via.placeholder.com/15/223a5e/000000?text=+) `#223a5e`
 - ![#365c96](https://via.placeholder.com/15/365c96/000000?text=+) `#365c96`
