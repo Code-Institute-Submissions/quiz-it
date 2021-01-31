@@ -78,7 +78,7 @@ I chose this font as its sharpness contrasts with the simple structure and layou
 - !["Jquery"](https://img.shields.io/badge/jquery%20-%230769AD.svg?&style=for-the-badge&logo=jquery&logoColor=white) - Jquery is a Javascript library that was for HTML DOM tree traversal and manipulation in the application.
 - [Google Fonts](https://fonts.google.com/) - Google Fonts is a library of free licensed font families that was used to import the Inknut Antiqua font
 - !["Font Awesome Badge"](https://img.shields.io/badge/Font_Awesome-5.14-339AF0?logo=font-awesome) - [Font Awesome](https://fontawesome.com/) is a font and icon toolkit that was used to generate the icons used throughout the site. 
-- !["Git Badge"](https://img.shields.io/badge/git%20-%23F05033.svg?&style=for-the-badge&logo=git&logoColor=white) - [Git][https://git-scm.com/] is an open source distributed version control system that was used to track any changes made to the source code. 
+- !["Git Badge"](https://img.shields.io/badge/git%20-%23F05033.svg?&style=for-the-badge&logo=git&logoColor=white) - [Git](https://git-scm.com) is an open source distributed version control system that was used to track any changes made to the source code. 
 - !["Github Badge"](https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white) - [Github](https://github.com/) is a platform for hosting software development and version control using Git. This was used to host and deploy this application through Github pages. 
 
 
