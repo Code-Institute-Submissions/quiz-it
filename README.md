@@ -91,14 +91,47 @@ I chose this font as its sharpness contrasts with the simple structure and layou
 - [Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools) - Used to test the responsiveness of site on different screen sizes and also used for debugging 
 - [Balsamiq](https://balsamiq.com/) - Mockup application tool used to draw wireframes for the application. 
 - [ami.responsivdesign.is](http://ami.responsivedesign.is) - Used to make a mockup of the application shown at the beginning of README.md file.
+- [Open Trivia Database](https://opentdb.com/) - Provided the [API](https://opentdb.com/api_config.php) used to populate the quiz questions. 
 
 ## Testing
 
 The application was built using [VS Code](https://code.visualstudio.com). I used the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) to conduct testing throughout the development process.
 
+### Validation 
+
+I validated the HTML source code using the [HTML Validation Service](https://validator.w3.org), there was some unused div closing tags causing errors which I removed. 
+
+The CSS passed without any errors - [CSS Validation Service](https://jigsaw.w3.org/css-validator/)
+
 ### Manual Testing 
 
-Testing was conducted on the finished application using VS Code Liver Server and Chrome Developer Tools. I also tested the application on different browsers. A full report on the manual testing process that tests functionality, usability and responsiveness is available [here](). 
+Testing was conducted on the finished application using VS Code Liver Server and Chrome Developer Tools. I also tested the application on different browsers. A full report on the manual testing process that tests functionality, usability and responsiveness is available [here](https://github.com/seamusmacg/quiz-it/blob/master/testing/TESTING.md).
+
+## Deployment
+
+The application was deployed through Github pages as follows:
+
+1. Created a local repository on my local machine which included all the application files and directories. 
+2. Initialized the repository through VS Code Source Control 
+3. Created a repository on Github with same name. 
+4. Staged and committed all the files with appropriate messages.
+5. In Settings on Github, I retrieved the [live URL](https://seamusmacg.github.io/quiz-it/).
+6. To run the project on your own machine: 
+    - **Step 1**: Go to the repository - https://github.com/seamusmacg/quiz-it 
+    - **Step 2**: Click "Code" and copy URL 
+    - **Step 3**: Open a terminal or CLI on your machine.
+    - **Step 4**: Navigate to the directory you wish to locate the repository. 
+    - **Step 5**: Type 'git clone' and paste the URL copied above. 
+    - **Step 6**: Press **Enter** and a clone of the repository will be created. 
+
+## Credits
+
+- [W3schools](https://www.w3schools.com/)
+- [CSS-Tricks](https://css-tricks.com/)
+- [Traversy Media - HTML & CSS Course](https://www.udemy.com/course/modern-html-css-from-the-beginning/)
+- [Traversy Media - Javascript Course](https://www.udemy.com/course/modern-javascript-from-the-beginning/)
+- [Stack Overflow](https://stackoverflow.com/)
+- I would like to thank my mentor Adegbenga Adeye for all his guidance and help throughout this project. 
 
 
 
