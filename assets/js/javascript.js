@@ -45,7 +45,7 @@ async function sendApiRequest() {
     difficulty = "";
   }
   base_url = `https://opentdb.com/api.php?amount=10&type=multiple&`;
-  var url = `${base_url}${category}&difficulty=${difficulty}`;
+  var url = `${base_url}category=${category}&difficulty=${difficulty}`;
   const response = await fetch(url);
   data = await response.json();
 
@@ -110,7 +110,6 @@ function checkAnswer() {
   totalAnswers++;
   // Progress bar logic from - https://medium.com/javascript-in-plain-english/building-a-progress-bar-in-css-js-html-from-scratch-6449da06042
   var increase = `${(totalAnswers / TOTAL_QUESTIONS) * 100}%`;
-  $(barFull).width(increase);
   selected = $(`input[name=answer]:checked`).next('label').text();
   var correct = correctAnswers(data.results);
   var incorrect = incorrectAnswers(data.results);
@@ -122,7 +121,6 @@ function checkAnswer() {
   }
   for (j = 1; j <= 4; j += 1) {
     if (correct.includes(selected) && questionAnswer == selected) {
-      // score++;
       $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('correct');
     } else if (incorrect.includes(selected)) {
       $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('incorrect');
@@ -134,11 +132,13 @@ function checkAnswer() {
       }
     }
   }
+  $(barFull).width(increase);
 }
 
 // On submit answer - validate if checked, check against answer and retrieve next question
 $(document).ready(function () {
   $(quizForm).on('click', '.nxtBtn', function () {
+    $('.nxtBtn').prop('disabled', true);
     if (!$('input').is(':checked')) {
       $('.incorrect').html('Please select an answer to proceed!');
     } else {
@@ -152,7 +152,8 @@ $(document).ready(function () {
 // Fisher-Yates (aka Knuth) Shuffle algorithm - function borrowed in full from: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 // Randomize the array
 function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+  var currentIndex = array.length,
+    temporaryValue, randomIndex;
 
   while (0 !== currentIndex) {
     randomIndex = Math.floor(Math.random() * currentIndex);
@@ -205,11 +206,12 @@ function nextQuestion() {
   if (totalAnswers < 10) {
     setTimeout(function () {
       $('.incorrect').empty();
-      $(document.getElementsByClassName(`question${answeredQuestions}`)).remove();
+      $('.nxtBtn').prop('disabled', false);
       $("input").prop("checked", false);
+      $(document.getElementsByClassName(`question${answeredQuestions}`)).remove();
       answeredQuestions++;
       $(document.getElementsByClassName(`question${answeredQuestions}`)).attr('style', 'display:block');
-    }, 2000);
+    }, 1000);
   } else {
     if (score >= 5) {
       setTimeout(function () {
@@ -224,7 +226,7 @@ function nextQuestion() {
           '<hr>' +
           `<button type="button" class="btn btn-primary btn-block btn-lg" id="playAgain" onclick="reloadPage()">Play Again</button>`);
         $(barPass).width(correctIncrease);
-      }, 2000);
+      }, 1000);
     } else {
       setTimeout(function () {
         $(quizForm).html("" +
@@ -238,7 +240,7 @@ function nextQuestion() {
           '<hr>' +
           `<button type="button" class="btn btn-primary btn-block btn-lg" id="playAgain" onclick="reloadPage()">Play Again</button>`);
         $(barFail).width(correctIncrease);
-      }, 2000);
+      }, 1000);
     }
 
   }
@@ -263,7 +265,7 @@ $(document).ready(function () {
           `<hr>` +
           `<div class="form-row align-items-center justify-content-center">` +
           `<div class="col-auto my-1">` +
-          `<label class="mr-sm-2" for="difficulty">Diffculty</label>` +
+          `<label class="mr-sm-2" for="difficulty">Difficulty</label>` +
           `<select class="custom-select mr-sm-2" id="difficulty">` +
           `<option selected>Select...</option>` +
           `<option value="1">Easy</option>` +
@@ -375,7 +377,3 @@ function formatInCorrect(data) {
   }
   return incorrectFormatted;
 }
-
-
-
-
