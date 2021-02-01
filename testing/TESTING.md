@@ -47,8 +47,33 @@ Unsuccessful Login:
 
 >As a user, I want the application to provide a choice on the category and difficulty level I will be tested on.
 
+The user is presented with two drop down inputs to select the respective category and difficulty.
+
 Category and Difficulty Selection: 
 !["Category and Difficulty that user can select"](https://github.com/seamusmacg/quiz-it/blob/master/images/category-difficulty.PNG)
+
+### User Story #3 
+
+> As a user, I want the application to test my knowledge on a variety of topics.
+
+The user is presented with questions from whatever topic they have chosen. 
+
+!["Example question presented to a user"](https://github.com/seamusmacg/quiz-it/blob/master/images/question.PNG)
+
+### User Story #4 
+
+> As a user, I want an application that will provide results on the number of questions answered correctly or incorrectly. 
+
+The user is presented with their result based on the number of questions they answered correctly. 
+
+Pass:
+
+!["Pass result shown to the user"](https://github.com/seamusmacg/quiz-it/blob/master/images/pass.PNG)
+
+Fail:
+
+!["Fail result shown to the user"](https://github.com/seamusmacg/quiz-it/blob/master/images/fail.PNG)
+
 
 
 
