@@ -40,6 +40,7 @@ Successful Login:
 !["Successful login message shown to user"](https://github.com/seamusmacg/quiz-it/blob/master/images/login-success.PNG)
 
 Unsuccessful Login: 
+
  !["Unsuccessful login message shown to user"](https://github.com/seamusmacg/quiz-it/blob/master/images/login-failure.PNG)
 
 ### User Story #2
