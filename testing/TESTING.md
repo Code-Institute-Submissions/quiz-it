@@ -50,6 +50,7 @@ Unsuccessful Login:
 The user is presented with two drop down inputs to select the respective category and difficulty.
 
 Category and Difficulty Selection: 
+
 !["Category and Difficulty that user can select"](https://github.com/seamusmacg/quiz-it/blob/master/images/category-difficulty.PNG)
 
 ### User Story #3 
@@ -74,7 +75,20 @@ Fail:
 
 !["Fail result shown to the user"](https://github.com/seamusmacg/quiz-it/blob/master/images/fail.PNG)
 
+## Responsiveness
 
+The application was tested for responsiveness on multiple devices using Chrome Developer Tools. Media queries were used to keep the device responsive across different devices.
+
+| Component | Intended Result | Works as intended? | Fix |
+| --------- | --------------- | ------------------ | --- |
+| Text | Should be readable and clear for each screen size | Yes | N/A |
+| Images | Maintain ratio at smaller sizes and not be stretched/distorted | Yes | N/A |
+| Layout | Sections should be structured properly with proper spacing between features | Yes | N/A |
+| Functionality | Buttons should work across screen sizes | Yes | N/A |
+
+## Github Pages 
+
+All the same tests applied in the local environment were also successfully applied on the hosted site (Github pages) without any problems.
 
 
 
