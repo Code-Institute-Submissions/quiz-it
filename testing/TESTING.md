@@ -35,7 +35,7 @@ Usability tests were carried out based on user stories as outlined in the README
 
 The user is presented with a simple confirmation message when they login where it is clear how they should proceed. The "Logout" button also indicates their logged in status throughout the quiz. 
 
-!["Successful login message shown to user"]() !["Unsuccessful login message shown to user"]()
+!["Successful login message shown to user"](https://github.com/seamusmacg/quiz-it/blob/master/images/login-success.PNG) !["Unsuccessful login message shown to user"](https://github.com/seamusmacg/quiz-it/blob/master/images/login-failure.PNG)
 
 
 
