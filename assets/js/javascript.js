@@ -1,21 +1,24 @@
 // Variables
-var userName = document.getElementById('username');
-var userPw = document.getElementById('password');
-var loginBtn = document.getElementById('login');
+var userName = document.getElementById("username");
+var userPw = document.getElementById("password");
+var loginBtn = document.getElementById("login");
 var loginForm = document.getElementById("login-form");
 var quizForm = document.getElementById("quiz");
-var progressBarComplete = document.getElementsByClassName('progress-bar-complete');
-var progressBarSuccess = document.getElementsByClassName('success-progress-bar-complete');
-var progressBarFail = document.getElementsByClassName('fail-progress-bar-complete');
+var barFull = document.getElementsByClassName("progress-bar-complete");
+var barPass = document.getElementsByClassName("success-progress-bar-complete");
+var barFail = document.getElementsByClassName("fail-progress-bar-complete");
 var localName;
 var localPassword;
 var loggedIn = false;
 var data;
 var question;
+var answer;
+var base_url;
 var score = 0;
 var totalAnswers = 0;
 var answeredQuestions = 1;
 var selected;
+var unSelected;
 var correctIncrease;
 var correctStr;
 var incorrectStr;
@@ -33,20 +36,22 @@ function startQuiz() {
 
 // Get questions from the API
 async function sendApiRequest() {
-  var category = $('#category option:selected').val();
-  var difficulty = $('#difficulty option:selected').text().toLowerCase();
+  var category = $("#category option:selected").val();
+  var difficulty = $("#difficulty option:selected").text().toLowerCase();
   if (category == "Select...") {
     category = "";
   }
   if (difficulty == "select...") {
     difficulty = "";
   }
-  var url = `https://opentdb.com/api.php?amount=10&type=multiple&category=${category}&difficulty=${difficulty}`;
+  base_url = `https://opentdb.com/api.php?amount=10&type=multiple&`;
+  var url = `${base_url}${category}&difficulty=${difficulty}`;
   const response = await fetch(url);
   data = await response.json();
 
   if (!response.ok) {
-    document.getElementById('errors').innerHTML = `Sorry a ${response.status} error has occured. Try again later.`;
+    var errors_id = document.getElementById("errors");
+    $(errors_id).innerHTML = `A ${response.status} error has occurred!`;
   } else {
     fillForm(data.results);
   }
@@ -54,13 +59,12 @@ async function sendApiRequest() {
 
 // Fill form with question and answers
 function fillForm(data) {
-  console.log("Success!");
   $(loginForm).children().remove();
   $(quizForm).children().remove();
-  for (i = 0; i < data.length; i++) {
+  for (i = 0; i < data.length; i += 1) {
     const element = data[i];
-    const question = data[i].question;
-    var answer = getAnswers(element);
+    question = data[i].question;
+    answer = getAnswers(element);
     shuffle(answer);
     $(quizForm).append("" +
       `<div class="question question${i + 1}" style="display: none;">` +
@@ -106,7 +110,7 @@ function checkAnswer() {
   totalAnswers++;
   // Progress bar logic from - https://medium.com/javascript-in-plain-english/building-a-progress-bar-in-css-js-html-from-scratch-6449da06042
   var increase = `${(totalAnswers / TOTAL_QUESTIONS) * 100}%`;
-  $(progressBarComplete).width(increase);
+  $(barFull).width(increase);
   selected = $(`input[name=answer]:checked`).next('label').text();
   var correct = correctAnswers(data.results);
   var incorrect = incorrectAnswers(data.results);
@@ -116,14 +120,14 @@ function checkAnswer() {
     score++;
     correctIncrease = `${(score / TOTAL_QUESTIONS) * 100}%`;
   }
-  for (j = 1; j <= 4; j++) {
+  for (j = 1; j <= 4; j += 1) {
     if (correct.includes(selected) && questionAnswer == selected) {
       // score++;
       $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('correct');
     } else if (incorrect.includes(selected)) {
       $(`input[id=answer-${j}-q-${totalAnswers}]:checked`).next('label').addClass('incorrect');
 
-      var unSelected = $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').text();
+      unSelected = $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').text();
 
       if (correct.includes(unSelected)) {
         $(`input[id=answer-${j}-q-${totalAnswers}]`).next('label').addClass('correct');
@@ -148,9 +152,7 @@ $(document).ready(function () {
 // Fisher-Yates (aka Knuth) Shuffle algorithm - function borrowed in full from: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 // Randomize the array
 function shuffle(array) {
-  var currentIndex = array.length,
-    temporaryValue, randomIndex;
-  console.log(currentIndex)
+  var currentIndex = array.length, temporaryValue, randomIndex;
 
   while (0 !== currentIndex) {
     randomIndex = Math.floor(Math.random() * currentIndex);
@@ -221,7 +223,7 @@ function nextQuestion() {
           `<p class="end-p">You answered <strong>${score}/10</strong>, well done!</p>` +
           '<hr>' +
           `<button type="button" class="btn btn-primary btn-block btn-lg" id="playAgain" onclick="reloadPage()">Play Again</button>`);
-        $(progressBarSuccess).width(correctIncrease);
+        $(barPass).width(correctIncrease);
       }, 2000);
     } else {
       setTimeout(function () {
@@ -235,14 +237,14 @@ function nextQuestion() {
           `<p class="end-p">You answered <strong>${score}/10</strong>, better luck next time!</p>` +
           '<hr>' +
           `<button type="button" class="btn btn-primary btn-block btn-lg" id="playAgain" onclick="reloadPage()">Play Again</button>`);
-        $(progressBarFail).width(correctIncrease);
+        $(barFail).width(correctIncrease);
       }, 2000);
     }
 
   }
 }
 
-// Validate inputs, add loader and hide login form elements 
+// Validate inputs and add loader - hide login form elements 
 $(document).ready(function () {
   $('#login').click(function () {
     if (checkName() && checkPass() && localName.length > 0 && localPassword == 'password') {
@@ -348,7 +350,7 @@ function correctAnswers(data) {
 //Put all incorrect answers in an array
 function incorrectAnswers(data) {
   var allIncorrect = [];
-  for (index = 0; index < data.length; index++) {
+  for (index = 0; index < data.length; index += 1) {
     allIncorrect.push(...data[index].incorrect_answers)
   }
   return allIncorrect;
@@ -357,7 +359,7 @@ function incorrectAnswers(data) {
 // Convert correct answers from HTML entities to text
 function formatCorrect(data) {
   var correctFormatted = [];
-  for (j = 0; j < data.length; j++) {
+  for (j = 0; j < data.length; j += 1) {
     correctStr = $('<textarea/>').html(data[j]).text();
     correctFormatted.push(correctStr);
   }
@@ -367,9 +369,13 @@ function formatCorrect(data) {
 // Convert incorrect answers from HTML entities to text
 function formatInCorrect(data) {
   var incorrectFormatted = [];
-  for (j = 0; j < data.length; j++) {
+  for (j = 0; j < data.length; j += 1) {
     incorrectStr = $('<textarea/>').html(data[j]).text();
     incorrectFormatted.push(incorrectStr);
   }
   return incorrectFormatted;
 }
+
+
+
+
