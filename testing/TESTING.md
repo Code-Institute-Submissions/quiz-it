@@ -31,11 +31,26 @@ Usability tests were carried out based on user stories as outlined in the README
 
 ### User Story #1
 
-- As a user , I want confirmation from the application whether I've logged in successfully or unsuccessfully. 
+>As a user , I want confirmation from the application whether I've logged in successfully or unsuccessfully. 
 
 The user is presented with a simple confirmation message when they login where it is clear how they should proceed. The "Logout" button also indicates their logged in status throughout the quiz. 
 
-!["Successful login message shown to user"](https://github.com/seamusmacg/quiz-it/blob/master/images/login-success.PNG) !["Unsuccessful login message shown to user"](https://github.com/seamusmacg/quiz-it/blob/master/images/login-failure.PNG)
+Successful Login: 
+
+!["Successful login message shown to user"](https://github.com/seamusmacg/quiz-it/blob/master/images/login-success.PNG)
+
+Unsuccessful Login: 
+ !["Unsuccessful login message shown to user"](https://github.com/seamusmacg/quiz-it/blob/master/images/login-failure.PNG)
+
+### User Story #2
+
+>As a user, I want the application to provide a choice on the category and difficulty level I will be tested on.
+
+Category and Difficulty Selection: 
+!["Category and Difficulty that user can select"](https://github.com/seamusmacg/quiz-it/blob/master/images/category-difficulty.PNG)
+
+
+
 
 
 
