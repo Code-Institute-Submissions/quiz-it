@@ -121,7 +121,7 @@ The application was deployed through Github pages as follows:
     - **Step 2**: Click "Code" and copy URL 
     - **Step 3**: Open a terminal or CLI on your machine.
     - **Step 4**: Navigate to the directory you wish to locate the repository. 
-    - **Step 5**: Type 'git clone' and paste the URL copied above. 
+    - **Step 5**: Type 'git clone' and then paste the URL copied above. 
     - **Step 6**: Press **Enter** and a clone of the repository will be created. 
 
 ## Credits
