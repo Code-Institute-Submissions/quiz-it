@@ -13,7 +13,15 @@
   overflow: hidden;
 }
 
-.logout-btn {
+.reset-btn {
+  position: absolute;
+  bottom: 11px;
+  right: 11px;
+  border-style: none;
+  background-color: rgb(151, 29, 29);
+}
+
+.exit-btn {
   position: absolute;
   bottom: 11px;
   right: 11px;
@@ -84,8 +92,15 @@
   background-color: #8fabd6 !important;
 }
 
-.logout-btn:focus,
-.logout-btn:active {
+.reset-btn:focus,
+.reset-btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: rgb(151, 29, 29) !important;
+}
+
+.exit-btn:focus,
+.exit-btn:active {
   outline: none !important;
   box-shadow: none !important;
   background-color: rgb(151, 29, 29) !important;
@@ -102,12 +117,6 @@
   flex-direction: row;
 }
 
-.icon-wrap-pass {
-  border: 1px solid #365c96;
-  display: flex;
-  flex-direction: row;
-}
-
 .iconWrapBorderColor {
   border: 2px solid #365c96;
 }
@@ -117,28 +126,13 @@
   color: #fff;
 }
 
-.input-icon-pass {
-  background-color: #365c96;
-  color: #fff;
-}
-
 .input-with-icon-name {
-  border: none;
-  flex: 1;
-}
-
-.input-with-icon-pass {
   border: none;
   flex: 1;
 }
 
 .input-icon-name,
 .input-with-icon-name {
-  padding: 10px;
-}
-
-.input-icon-pass,
-.input-with-icon-pass {
   padding: 10px;
 }
 
