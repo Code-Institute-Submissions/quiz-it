@@ -77,6 +77,24 @@
   background-color: #5681c2;
 }
 
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: #8fabd6 !important;
+}
+
+.logout-btn:focus,
+.logout-btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: rgb(151, 29, 29) !important;
+}
+
+.active {
+  background-color: #5681c2 !important;
+}
+
 /* Some styling & positioning for below classes (e.g. icon-*)) was borrowed from this flexbox code - https://codepen.io/imohkay/pen/QwjwwY/ */
 .icon-wrap-name {
   border: 1px solid #365c96;
