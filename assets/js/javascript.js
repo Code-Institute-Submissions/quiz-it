@@ -30,9 +30,17 @@ const TOTAL_QUESTIONS = 10;
 
 
 // Call sendApiRequest to start the Quiz
-function startQuiz() {
+// function startQuiz() {
+//   sendApiRequest();
+// }
+
+$(loginForm).on('click', '.startBtn', function () {
+  $("button").removeClass("active");
+  $(this).addClass("active");
   sendApiRequest();
-}
+});
+
+
 
 // Get questions from the API
 async function sendApiRequest() {
@@ -138,9 +146,13 @@ function checkAnswer() {
 // On submit answer - validate if checked, check against answer and retrieve next question
 $(document).ready(function () {
   $(quizForm).on('click', '.nxtBtn', function () {
+    $("button").removeClass("active");
+    $(this).addClass("active");
     $('.nxtBtn').prop('disabled', true);
     if (!$('input').is(':checked')) {
       $('.incorrect').html('Please select an answer to proceed!');
+      $('.nxtBtn').prop('disabled', false);
+      $("button").removeClass("active");
     } else {
       checkAnswer();
       nextQuestion();
@@ -292,7 +304,7 @@ $(document).ready(function () {
           `</div>` +
           `<p class="p-2">* If nothing selected a variety of categories and difficulties will be chosen</p>` +
           `<hr>` +
-          `<button type="button" class="btn btn-primary btn-block btn-lg" id="start" onclick="startQuiz()">Start Quiz</button>`);
+          `<button type="button" class="btn btn-primary btn-block btn-lg startBtn" id="start">Start Quiz</button>`);
       }, 2000);
     } else if (checkName() && checkPass() && localName.length > 0 && localPassword !== 'password') {
       $(this).prop("disabled", true);
@@ -377,3 +389,9 @@ function formatInCorrect(data) {
   }
   return incorrectFormatted;
 }
+
+
+$("button").click(function () {
+  $("button").removeClass("active");
+  $(this).addClass("active");
+});
