@@ -28,7 +28,7 @@
 
 
 ## Project Overview
-Quiz-It is a simple quiz trivia game that tests a user's knowledge on a variety of topics. A user can select a Category and a Difficulty, they are then presented with ten questions (one question at a time) that they must answer. After answering each question they are show whether their answer is correct or incorrect. At the end of the questions they are given their score out of ten. A score of five or above is considered a pass and a score of five or below is considered a fail. 
+Quiz-It is a simple quiz trivia game that tests a user's knowledge on a variety of topics. A user can select a Category and a Difficulty, they are then presented with ten questions (one question at a time) that they must answer. After answering each question they are shown whether their answer is correct or incorrect. At the end of the questions they are given their score out of ten. A score of five or above is considered a pass and a score of five or below is considered a fail. 
 
 The questions are generated using an open source trivia API from [Open Trivia Database](https://opentdb.com/api_config.php)
 
@@ -54,7 +54,7 @@ Demo available [here](https://seamusmacg.github.io/quiz-it)
 - Main login form - contains app logo and name, including a brief description of the game and instructions. Contains a mandatory username input.   
 - Settings section - contains confirmation and welcome message, Difficulty and Category selections. A 'Start Quiz' button to set up the quiz form section.   
 - Quiz section - contains quiz title, question (numbered) with four possible answers to select as radio buttons. A progress bar to display the number of questions answered. A 'Next' button to display next question, also shows whether the answer is correct or incorrect. A 'Reset' button is also displayed that resets the quiz to the Settings section
-- Result section - shows whether the user failed or passed and buttons to 'Play Again'(same as 'Reset') or 'Quit' (Quit quiz). 
+- Result section - shows whether the user failed or passed (and displays the score) and buttons to 'Play Again'(same as 'Reset') or 'Quit' (Quit quiz). 
 
 ### Structure 
 The application is displayed on one page which is dynamically loaded based on user actions. The content of the page is contained in two forms - a login form and quiz form. The structure is focused on providing the information to the user in a presentable format and with intuitive design. 
@@ -72,7 +72,7 @@ I used [Balsamiq](https://balsamiq.com) to create a wireframe for each event pre
 
 The application's layout aims for intuitive design where the user knows how to proceed based what they see. 
 
-The final design of the application differed somewhat to the original wireframes. My mentor advised that a I remove the 'Password' field as it effected usability and that I include a 'Reset' function instead of a 'Logout' function. I removed these functionalities and added these new ones. 
+The final design of the application differed somewhat to the original wireframes. My mentor advised that a I remove the 'Password' field as it effected usability and that I include a 'Reset' function instead of a 'Logout' function. I removed these functionalities and added these new ones. The overall structure of the application remained the same though.
 
 ### Colour
 
@@ -86,7 +86,7 @@ The final design of the application differed somewhat to the original wireframes
 - ![#FFFFFF](https://via.placeholder.com/15/FFFFFF/000000?text=+) `#FFFFFF`
 
 The primary colour theme I used was '2017 Navy Peony' taken from [W3schools](https://www.w3schools.com/w3css/w3css_color_generator.asp). I chose this theme for it's use of
-gentle blue/navy colours. As this application requires the user to engage cognitively I didn't want the colours to be overbearing or distracting. Blue is a calming colour that provides a positive user experience. Validation messages are displayed in the natural colours of green for success and red for errors.
+gentle blue/navy colours. As this application requires the user to engage cognitively, I didn't want the colours to be overbearing or distracting. Blue is a calming colour that provides a positive user experience. Validation messages are displayed in the natural colours of green for success and red for errors.
 
 ### Typography 
 
@@ -116,7 +116,7 @@ I chose this font as its sharpness contrasts with the simple structure and layou
 - [Balsamiq](https://balsamiq.com/) - Mockup application tool used to draw wireframes for the application. 
 - [ami.responsivdesign.is](http://ami.responsivedesign.is) - Used to make a mockup of the application shown at the beginning of README.md file.
 - [Open Trivia Database](https://opentdb.com/) - Provided the [API](https://opentdb.com/api_config.php) used to populate the quiz questions. 
--[Lighthouse](https://developers.google.com/web/tools/lighthouse/) used to test the quality and performance of the application. 
+- [Lighthouse](https://developers.google.com/web/tools/lighthouse/) used to test the quality and performance of the application. 
 
 ## Testing
 
@@ -124,13 +124,13 @@ The application was built using [VS Code](https://code.visualstudio.com). I used
 
 ### Validation 
 
-I validated the HTML source code using the [HTML Validation Service](https://validator.w3.org), there was some unused div closing tags causing errors which I removed. 
+I validated the HTML source code using the [HTML Validation Service](https://validator.w3.org), there were some unused div closing tags causing errors which I removed. 
 
 The CSS passed without any errors - [CSS Validation Service](https://jigsaw.w3.org/css-validator/)
 
 ### Manual Testing 
 
-Testing was conducted on the finished application using VS Code Liver Server and Chrome Developer Tools. I also tested the application on different browsers. A full report on the manual testing process that tests functionality, usability and responsiveness is available [here](https://github.com/seamusmacg/quiz-it/blob/master/testing/TESTING.md).
+Testing was conducted on the finished application using VS Code Liver Server and Chrome Developer Tools. I also tested the application on different browsers. A full report on the manual testing process that tests functionality, usability, responsiveness and performance is available [here](https://github.com/seamusmacg/quiz-it/blob/master/testing/TESTING.md).
 
 ## Deployment
 
