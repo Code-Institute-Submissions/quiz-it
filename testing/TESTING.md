@@ -33,15 +33,19 @@ Usability tests were carried out based on user stories as outlined in the README
 
 >As a user , I want confirmation from the application whether I've logged in successfully or unsuccessfully. 
 
-The user is presented with a simple confirmation message when they login where it is clear how they should proceed. The "Logout" button also indicates their logged in status throughout the quiz. 
+The user is presented with a simple welcome confirmation message when they enter a valid username where it is clear how they should proceed. 
 
 Successful Login: 
 
-!["Successful login message shown to user"](https://github.com/seamusmacg/quiz-it/blob/master/images/login-success.PNG)
+!["Successful login message shown to user"](https://github.com/seamusmacg/quiz-it/blob/master/images/success-login.PNG)
 
-Unsuccessful Login: 
+Unsuccessful Login (No username entered): 
 
- !["Unsuccessful login message shown to user"](https://github.com/seamusmacg/quiz-it/blob/master/images/login-failure.PNG)
+ !["Unsuccessful login message shown to user for no username"](https://github.com/seamusmacg/quiz-it/blob/master/images/fail-login.PNG)
+
+ Unsuccessful Login (Username too long):
+
+  !["Unsuccessful login message shown to user for using too long a username"](https://github.com/seamusmacg/quiz-it/blob/master/images/fail-login-length.PNG)
 
 ### User Story #2
 
@@ -51,7 +55,7 @@ The user is presented with two drop down inputs to select the respective categor
 
 Category and Difficulty Selection: 
 
-!["Category and Difficulty that user can select"](https://github.com/seamusmacg/quiz-it/blob/master/images/category-difficulty.PNG)
+!["Category and Difficulty that user can select"](https://github.com/seamusmacg/quiz-it/blob/master/images/success-login.PNG)
 
 ### User Story #3 
 
@@ -59,7 +63,7 @@ Category and Difficulty Selection:
 
 The user is presented with questions from whatever topic they have chosen. 
 
-!["Example question presented to a user"](https://github.com/seamusmacg/quiz-it/blob/master/images/question.PNG)
+!["Example question presented to a user"](https://github.com/seamusmacg/quiz-it/blob/master/images/success-login.PNG)
 
 ### User Story #4 
 
@@ -85,6 +89,12 @@ The application was tested for responsiveness on multiple devices using Chrome D
 | Images | Maintain ratio at smaller sizes and not be stretched/distorted | Yes | N/A |
 | Layout | Sections should be structured properly with proper spacing between features | Yes | N/A |
 | Functionality | Buttons should work across screen sizes | Yes | N/A |
+
+## Performance Testing 
+
+I ran the [Lighthouse](https://developers.google.com/web/tools/lighthouse/) testing tool to check the quality and performance of the site. The site received good ratings ranging from 80 - 100. 
+
+["Lighthouse Report"](https://github.com/seamusmacg/quiz-it/blob/master/images/lighthouse-report.PNG)
 
 ## Github Pages 
 
