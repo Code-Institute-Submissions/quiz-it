@@ -91,7 +91,7 @@ The application was tested for responsiveness on multiple devices using Chrome D
 | Component | Intended Result | Works as intended? | Fix |
 | --------- | --------------- | ------------------ | --- |
 | Text | Should be readable and clear for each screen size | Yes | N/A |
-| Images | Maintain ratio at smaller sizes and not be stretched/distorted | Yes | N/A |
+| Icons | Maintain ratio at smaller sizes and not be stretched/distorted | Yes | N/A |
 | Layout | Sections should be structured properly with proper spacing between features | Yes | N/A |
 | Functionality | Buttons should work across screen sizes | Yes | N/A |
 
