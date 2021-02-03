@@ -43,7 +43,7 @@ function chooseSettings() {
     $(loginForm).children().hide();
     $(loginForm).html("" +
       `<i class="fas fa-check-circle"></i>` +
-      `<h1>Let's Quiz-It!</h1>` +
+      `<h1>Quiz-It!</h1>` +
       `<h2>Welcome ${localName}!</h2>` +
       `<hr>` +
       `<div class="form-row align-items-center justify-content-center">` +
