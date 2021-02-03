@@ -377,7 +377,7 @@ $(".main-container").on('click', '.reset-btn', function () {
   $(quizForm)[0].reset();
   $(loginForm).html("" +
     `<h1>Resetting Quiz!</h1>` +
-    `<h2>One moment, please..</h2>` +
+    `<h2 class="correct">One moment, please..</h2>` +
     `<span class="spinner-border spinner-border-lg" role="status" aria-hidden="true"></span>`);
   chooseSettings();
 });
@@ -393,7 +393,7 @@ $(".main-container").on('click', '.restart-btn', function () {
   $(quizForm)[0].reset();
   $(loginForm).html("" +
     `<h1>Restarting Quiz-It!</h1>` +
-    `<h2>One moment, please..</h2>` +
+    `<h2 class="correct">One moment, please..</h2>` +
     `<span class="spinner-border spinner-border-lg" role="status" aria-hidden="true"></span>`);
   chooseSettings();
 });
