@@ -12,8 +12,11 @@
 |**Next Button** |Checks if answer is correct and displays if incorrect | No | Some answers not returning as correct due to encoding issue. Created functions to properly encode the answers.
 |**Next Button** | Show correct and/or incorrect answer before next question or before end of quiz | No | Last question not showing answers before result section. Added timer function to show answer before results are displayed |
 |**Reset Button** | Reset the quiz to settings section | Yes | N/A |
+|**Reset Button** | Display message and spinner | Yes | N/A |
 |**Play Again Button** | Reset the quiz to settings section | Yes | N/A |
-|**Exit Button** | Exit the quiz (to Login section)| Yes | N/A |
+|**Play Again Button** | Display message and spinner | Yes | N/A |
+|**Exit Button** | Exit the quiz (to Login section) | Yes | N/A |
+
 
 ### Hover/Focus/Click Effects 
 
@@ -25,6 +28,7 @@
 | Let's Go Button | Shows spinner animation on click | Yes | N/A |
 | Exit Button | Changes to a lighter red on hover | Yes | N/A |
 | Reset Button | Changes to a lighter red on click | Yes | N/A |
+
 
 ## Usability 
 
