@@ -116,7 +116,7 @@ I chose this font as its sharpness contrasts with the simple structure and layou
 - [Balsamiq](https://balsamiq.com/) - Mockup application tool used to draw wireframes for the application. 
 - [ami.responsivdesign.is](http://ami.responsivedesign.is) - Used to make a mockup of the application shown at the beginning of README.md file.
 - [Open Trivia Database](https://opentdb.com/) - Provided the [API](https://opentdb.com/api_config.php) used to populate the quiz questions. 
-- [Lighthouse](https://developers.google.com/web/tools/lighthouse/) used to test the quality and performance of the application. 
+- [Lighthouse](https://developers.google.com/web/tools/lighthouse/) - used to test the quality and performance of the application. 
 
 ## Testing
 
