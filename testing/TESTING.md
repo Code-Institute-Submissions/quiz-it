@@ -6,24 +6,25 @@
 
 | Component | Intended Function | Works as Intended? | Fix |
 | -------------- | ------------------- | ---------------- | --- |
-|**Login Button** | Validates user inputs, return errors or logs user in | Yes | N/A |
+|**Let's Go Button** | Validates user inputs, return errors or logs user in | Yes | N/A |
 |**Start Quiz Button** | Calls API and loads question one of the quiz | Yes | N/A |
 |**Next Button** | Validates if input is checked return error if not.| Yes | N/A |
 |**Next Button** |Checks if answer is correct and displays if incorrect | No | Some answers not returning as correct due to encoding issue. Created functions to properly encode the answers.
 |**Next Button** | Show correct and/or incorrect answer before next question or before end of quiz | No | Last question not showing answers before result section. Added timer function to show answer before results are displayed |
-|**Logout Button** | Reset the page and show login form | Yes | N/A |
-|**Play Again Button** | Reset the page and show login form | Yes | N/A |
+|**Reset Button** | Reset the quiz to settings section | Yes | N/A |
+|**Play Again Button** | Reset the quiz to settings section | Yes | N/A |
+|**Exit Button** | Exit the quiz (to Login section)| Yes | N/A |
 
 ### Hover/Focus/Click Effects 
 
 | Component | Intended Function | Works as Intended? | Fix |
 | -------------- | ------------------- | ---------------- | --- |
-| Username/Password input select | Applies thick blue border around input | Yes | N/A |
-| Login, Start Quiz, Next, Play Again Buttons | Changes to lighter blue on hover | Yes | N/A |
-| Login, Start Quiz, Next, Play Again Buttons | Changes to lighter blue on click | Yes | N/A |
-| Login Button | Shows spinner animation on click | Yes | N/A |
-| Logout Button | Changes to a lighter red on hover | Yes | N/A |
-| Logout Button | Changes to a lighter red on click | Yes | N/A |
+| Username input select | Applies thick blue border around input | Yes | N/A |
+| Let's Go, Start Quiz, Next, Play Again Buttons | Changes to lighter blue on hover | Yes | N/A |
+| Let's Go, Start Quiz, Next, Play Again Buttons | Changes to lighter blue on click | Yes | N/A |
+| Let's Go Button | Shows spinner animation on click | Yes | N/A |
+| Exit Button | Changes to a lighter red on hover | Yes | N/A |
+| Reset Button | Changes to a lighter red on click | Yes | N/A |
 
 ## Usability 
 
@@ -94,7 +95,7 @@ The application was tested for responsiveness on multiple devices using Chrome D
 
 I ran the [Lighthouse](https://developers.google.com/web/tools/lighthouse/) testing tool to check the quality and performance of the site. The site received good ratings ranging from 80 - 100. 
 
-["Lighthouse Report"](https://github.com/seamusmacg/quiz-it/blob/master/images/lighthouse-report.PNG)
+!["Lighthouse Report"](https://github.com/seamusmacg/quiz-it/blob/master/images/lighthouse-report.PNG)
 
 ## Github Pages 
 
